@@ -12,7 +12,7 @@ const spaceGrotesk = Space_Grotesk({
 const themeInit = `(function(){try{var stored=localStorage.getItem("theme");var dark=stored?stored==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",dark);document.documentElement.style.colorScheme=dark?"dark":"light";}catch(e){}})();`;
 
 export const metadata: Metadata = {
-  title: "GymAI: Training plans that adapt to you",
+  title: "GymAI",
   description:
     "GymAI builds your weekly program, adjusts it after every session, and tells you exactly what to lift next.",
 };
