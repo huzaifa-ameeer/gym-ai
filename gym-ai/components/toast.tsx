@@ -85,7 +85,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       setToasts((list) => [...list.slice(-2), toast]);
       timers.current.set(
         id,
-        window.setTimeout(() => dismiss(id), 5000),
+        window.setTimeout(() => dismiss(id), 3000),
       );
     },
     [dismiss],
