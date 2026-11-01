@@ -84,17 +84,18 @@ export default function Home() {
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Link
                     href="/start-session"
+                    prefetch={false}
                     className={buttonClass({ size: "lg" })}
                   >
                     Start training
                     <ArrowRightIcon className="h-4 w-4" />
                   </Link>
-                  <a
+                  <Link
                     href="#how-it-works"
                     className={buttonClass({ variant: "secondary", size: "lg" })}
                   >
                     See how it works
-                  </a>
+                  </Link>
                 </div>
 
                 <p className="mt-5 text-sm text-muted">
@@ -142,6 +143,7 @@ export default function Home() {
 
                   <Link
                     href="/start-session"
+                    prefetch={false}
                     className={`${buttonClass({ full: true })} mt-5`}
                   >
                     Start session
@@ -240,6 +242,7 @@ export default function Home() {
               </div>
               <Link
                 href="/start-session"
+                prefetch={false}
                 className={`${buttonClass({ size: "lg" })} shrink-0`}
               >
                 Start training
@@ -252,9 +255,9 @@ export default function Home() {
 
       <footer className="border-t border-line">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-4 px-5 py-8 sm:flex-row sm:items-center sm:px-6 lg:px-8">
-          <a href="#home" aria-label="GymAI home" className="rounded-lg">
+          <Link href="#home" aria-label="GymAI home" className="rounded-lg">
             <Logo />
-          </a>
+          </Link>
           <p className="text-sm text-muted">
             &copy; 2026 GymAI. Built for steady progress.
           </p>
