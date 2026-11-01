@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { buttonClass } from "@/components/button";
 import {
   ActivityIcon,
@@ -81,10 +82,13 @@ export default function Home() {
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <a href="/login" className={buttonClass({ size: "lg" })}>
+                  <Link
+                    href="/start-session"
+                    className={buttonClass({ size: "lg" })}
+                  >
                     Start training
                     <ArrowRightIcon className="h-4 w-4" />
-                  </a>
+                  </Link>
                   <a
                     href="#how-it-works"
                     className={buttonClass({ variant: "secondary", size: "lg" })}
@@ -136,12 +140,12 @@ export default function Home() {
                     ))}
                   </ul>
 
-                  <a
-                    href="/login"
+                  <Link
+                    href="/start-session"
                     className={`${buttonClass({ full: true })} mt-5`}
                   >
                     Start session
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -234,13 +238,13 @@ export default function Home() {
                   session ready.
                 </p>
               </div>
-              <a
-                href="/login"
+              <Link
+                href="/start-session"
                 className={`${buttonClass({ size: "lg" })} shrink-0`}
               >
                 Start training
                 <ArrowRightIcon className="h-4 w-4" />
-              </a>
+              </Link>
             </div>
           </div>
         </section>
