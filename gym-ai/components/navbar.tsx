@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { buttonClass } from "@/components/button";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -11,7 +12,11 @@ const links = [
   { label: "Features", href: "#features" },
 ];
 
+const HEADER_OFFSET = 64;
+
 export function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -35,18 +40,34 @@ export function Navbar() {
     const onResize = () => {
       if (window.innerWidth >= 1024) setOpen(false);
     };
-    const previousOverflow = document.body.style.overflow;
 
     document.addEventListener("keydown", onKeyDown);
     window.addEventListener("resize", onResize);
-    document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("resize", onResize);
-      document.body.style.overflow = previousOverflow;
     };
   }, [open]);
+
+  function handleSectionClick(
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) {
+    setOpen(false);
+
+    if (!isHome) return;
+
+    const target = document.getElementById(href.slice(1));
+    if (!target) return;
+
+    event.preventDefault();
+    const top = Math.max(
+      0,
+      target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET,
+    );
+    window.scrollTo({ top, behavior: "smooth" });
+  }
 
   return (
     <header
@@ -58,10 +79,10 @@ export function Navbar() {
     >
       <div className="relative mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
         <a
-          href="#home"
+          href={isHome ? "#home" : "/"}
           aria-label="GymAI home"
           className="flex shrink-0 items-center rounded-lg"
-          onClick={() => setOpen(false)}
+          onClick={(event) => handleSectionClick(event, "#home")}
         >
           <Logo />
         </a>
@@ -73,7 +94,8 @@ export function Navbar() {
           {links.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={isHome ? link.href : `/${link.href}`}
+              onClick={(event) => handleSectionClick(event, link.href)}
               className="rounded-full px-4 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:bg-accent-soft hover:text-foreground"
             >
               {link.label}
@@ -82,10 +104,7 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href="/login"
-            className={`${buttonClass()} hidden sm:inline-flex`}
-          >
+          <a href="/login" className={`${buttonClass()} hidden lg:inline-flex`}>
             Login
           </a>
           <ThemeToggle />
@@ -129,8 +148,8 @@ export function Navbar() {
             {links.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
+                href={isHome ? link.href : `/${link.href}`}
+                onClick={(event) => handleSectionClick(event, link.href)}
                 className="rounded-xl px-4 py-3 text-base font-medium text-foreground transition-colors duration-200 hover:bg-accent-soft"
               >
                 {link.label}
@@ -139,7 +158,7 @@ export function Navbar() {
             <a
               href="/login"
               onClick={() => setOpen(false)}
-              className={`${buttonClass({ size: "lg", full: true })} mt-3 sm:hidden`}
+              className={`${buttonClass({ size: "lg", full: true })} mt-3`}
             >
               Login
             </a>
