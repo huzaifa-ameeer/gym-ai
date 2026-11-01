@@ -143,7 +143,7 @@ export function normalizePlan(value: unknown): Plan {
   const root = record(value);
 
   const roadmap = (Array.isArray(root.roadmap) ? root.roadmap : [])
-    .slice(0, 16)
+    .slice(0, 1)
     .map((entry, weekIndex) => {
       const item = record(entry);
       const days = (Array.isArray(item.days) ? item.days : [])
@@ -169,7 +169,7 @@ export function normalizePlan(value: unknown): Plan {
       root.summary,
       "A weekly plan built around your goal and schedule.",
     ),
-    weeks: integer(root.weeks, roadmap.length, 1, 16),
+    weeks: roadmap.length,
     daysPerWeek: integer(root.daysPerWeek, roadmap[0].days.length, 1, 7),
     roadmap,
     notes: stringList(root.notes),

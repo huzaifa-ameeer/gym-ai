@@ -114,7 +114,7 @@ export function PlanView({ plan }: { plan: Plan }) {
           {plan.summary}
         </p>
         <div className="mt-5 flex flex-wrap gap-2">
-          <Meta>{plan.weeks} week block</Meta>
+          <Meta>{plan.weeks === 1 ? "1 week plan" : `${plan.weeks} week block`}</Meta>
           <Meta>{plan.daysPerWeek} days per week</Meta>
           <Meta>
             {plan.roadmap[0]?.days[0]?.durationMinutes ?? 60} min sessions
