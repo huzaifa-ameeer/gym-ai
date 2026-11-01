@@ -116,3 +116,23 @@ export function ChevronDownIcon(props: SVGProps<SVGSVGElement>) {
     </Icon>
   );
 }
+
+export function EyeIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Icon {...props}>
+      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" />
+      <circle cx="12" cy="12" r="3" />
+    </Icon>
+  );
+}
+
+export function EyeOffIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Icon {...props}>
+      <path d="M4 4l16 16" />
+      <path d="M10.7 6a9.9 9.9 0 0 1 1.3-.1c6 0 9.5 6.1 9.5 6.1a17.6 17.6 0 0 1-3 3.7" />
+      <path d="M6.6 7.7A17.5 17.5 0 0 0 2.5 12s3.5 6.1 9.5 6.1a9.8 9.8 0 0 0 3.9-.8" />
+      <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+    </Icon>
+  );
+}
